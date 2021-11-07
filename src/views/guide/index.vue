@@ -87,43 +87,65 @@
       v-model="tabVal"
       type="text"
     >
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
-    <h1>가나다라마바사</h1>
+    <br>
+    <br>
+    <ui-swiper>
+      <swiper-slide>
+        <div class="img_banner_box">
+          <img
+            src="@/assets/images/temp/image-temp.jpg"
+            alt=""
+          >
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="img_banner_box">
+          <img
+            src="@/assets/images/temp/image-temp.jpg"
+            alt=""
+          >
+        </div>
+      </swiper-slide>
+    </ui-swiper>
+    <br>
+    <br>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
+    <h2>가나다라마바사</h2>
 
     <!-- 마크업 로딩창 -->
     <div
@@ -152,17 +174,19 @@
 
 <script>
 import uiPage from '@/components/global/uiPage.vue'
-import UiLoading from '@/components/global/uiLoading.vue'
+import uiLoading from '@/components/global/uiLoading.vue'
 import uiTabs from '@/components/global/uiTabs.vue'
 import uiTab from '@/components/global/uiTab'
+import uiSwiper from '@/components/global/uiSwiper.vue'
 
 export default {
   name: 'Index',
   components: {
     uiPage,
-    UiLoading,
+    uiLoading,
     uiTabs,
     uiTab,
+    uiSwiper,
   },
   data() {
     return {

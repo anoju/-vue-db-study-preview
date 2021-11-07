@@ -1,4 +1,3 @@
-import anime from 'animejs/lib/anime.es'
 import eventBus from '@/components/eventBus.vue'
 
 export default {
@@ -6,7 +5,6 @@ export default {
     if (this.installed) return
 
     this.installed = true
-    Vue.prototype.$anime = anime
     Vue.prototype.$removeComma = this.removeComma
     Vue.prototype.$loading = this.loading
     Vue.prototype.$scrollTo = this.scrollTo

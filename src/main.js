@@ -1,13 +1,21 @@
 import Vue from 'vue'
+import anime from 'animejs/lib/anime.es'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './assets/scss/front.scss'
 import commonUI from './utils/common'
 import directives from './utils/directives'
 
+import 'swiper/swiper-bundle.css'
+import './assets/scss/front.scss'
+
+Vue.prototype.$anime = anime
+
 Vue.use(commonUI)
 Vue.use(directives)
+Vue.use(VueAwesomeSwiper, { SwiperSlide: 'swiper-slide' })
 
 Vue.config.productionTip = false
 

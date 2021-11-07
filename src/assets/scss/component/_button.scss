@@ -1,0 +1,69 @@
+.button {
+	position:relative;
+	display:inline-flex;
+	height:48px;
+	line-height:inherit;
+	padding:0 12px;
+	border:0 solid transparent;
+	text-align:center;
+	font-size:inherit;
+	// white-space:nowrap;
+	text-decoration:none;
+	overflow:hidden;
+	box-sizing:border-box;
+	border-radius:4px;
+	-webkit-appearance:none;
+	justify-content:center;
+	align-items:center;
+	font-size: 16px;
+	font-weight:bold;
+	vertical-align: middle;
+	transition: opacity 0.3s;
+	&.disabled,
+	&:disabled{opacity:0.3;-webkit-tap-highlight-color:transparent;}
+
+	&.small{
+		height: 32px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+	&.large{
+		height: 60px;
+		font-size: 18px;
+	}
+
+	&.round{border-radius:30px;}
+
+	&.large{height:60px;}
+	&.full{display:flex;width:100%;}
+
+	&.primary,
+	&.green{background:var(--theme-color);color:#fff;}
+	&.primary-2,
+	&.yellow{background:#fee525;}
+	&.secondary,
+	&.gray{background:#3b3f47;color:#fff;}
+
+	&.line{border-width:1px;border-color:#222;color:#222;background:#fff;
+		&.primary,
+		&.green{border-color:var(--theme-color);color:var(--theme-color);}
+	}
+	&.checked {
+		opacity: 1;
+		background: #f8f8f8;
+		border-color: #eee;
+	}
+}
+.btn-wrap{
+	margin-top:8px;
+	text-align:center;
+	clear:both;
+	> .button + .button{
+		margin-top: 8px;
+	}
+	.button{
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
