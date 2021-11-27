@@ -109,44 +109,51 @@
     </ui-swiper>
     <br>
     <br>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-    <h2>가나다라마바사</h2>
-
+    <ui-select
+      v-model="selectVal"
+      :options="options"
+    />
+    <br>
+    <br>
+    <div>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+      <h2>가나다라마바사</h2>
+    </div>
     <!-- 마크업 로딩창 -->
     <div
       v-if="isLoading"
@@ -178,6 +185,7 @@ import uiLoading from '@/components/global/uiLoading.vue'
 import uiTabs from '@/components/global/uiTabs.vue'
 import uiTab from '@/components/global/uiTab'
 import uiSwiper from '@/components/global/uiSwiper.vue'
+import uiSelect from '@/components/global/uiSelect.vue'
 
 export default {
   name: 'Index',
@@ -187,12 +195,22 @@ export default {
     uiTabs,
     uiTab,
     uiSwiper,
+    uiSelect,
   },
   data() {
     return {
       isLoading: false,
       isLoading2: false,
       tabVal: 2,
+      selectVal: 1,
+      options: [
+        { text: '선택1', value: 1 },
+        { text: '선택2', value: 2 },
+        { text: '선택3', value: 3, disabled: true },
+        { text: '선택4', value: 4 },
+        { text: '선택4', value: 4 },
+        { text: '선택5', value: 5 },
+      ],
     }
   },
   methods: {
