@@ -68,7 +68,7 @@ import bus from '../eventBus.vue'
 
 // Import Swiper styles
 export default {
-  name: 'UiSwiper',
+  name: 'UiSwiperBak',
   setup() {
     return {
       modules: [Navigation, Pagination, Autoplay],

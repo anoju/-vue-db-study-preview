@@ -4,7 +4,7 @@
     :class="{full:fullWidth, auto:autoWidth, only:isOnly}"
   >
     <div
-      v-swiper:mySwiper="swiperOption"
+      v-swiper:uiSwiper="swiperOption"
       class="ui-swiper"
       :class="{loop:loop, 'auto-height':autoHeight}"
       :dir="dir"
@@ -20,6 +20,7 @@
         <slot />
       </div>
       <div
+        ref="pagination"
         slot="pagination"
         class="swiper-pagination"
       />
@@ -113,7 +114,7 @@ export default {
   watch: {
     value() {
       if (this.value !== null && this.value !== '' && !Number.isNaN(this.value)) {
-        if (!this.isChagned) this.mySwiper.slideTo(Number(this.value), 100)
+        if (!this.isChagned) this.uiSwiper.slideTo(Number(this.value), 100)
         this.$emit('input', this.value)
         this.isChagned = false
       }
@@ -122,12 +123,13 @@ export default {
   beforeMount() {
     if (this.autoplay) {
       this.isAutoplay = true
-      // this.mySwiper.slideTo(this.index, 0, false);
-      // this.mySwiper.autoplay.start();
+      // this.uiSwiper.slideTo(this.index, 0, false);
+      // this.uiSwiper.autoplay.start();
     }
   },
   mounted() {
     bus.$on('uiSwiperUpdate', this.swiperUpdate)
+    console.log(this.uiSwiper)
   },
   destroyed() {
     bus.$off('uiSwiperUpdate', this.swiperUpdate)
@@ -164,16 +166,16 @@ export default {
     */
     swiperUpdate() {
       setTimeout(() => {
-        this.mySwiper.update()
+        this.uiSwiper.update()
       }, 20)
     },
     swiperReady(swiper) {
       this.$nextTick(() => {
         this.swiperCheck(swiper)
-        if (this.value !== null && this.value !== '' && !Number.isNaN(this.value)) this.mySwiper.slideTo(Number(this.value), 0)
+        if (this.value !== null && this.value !== '' && !Number.isNaN(this.value)) this.uiSwiper.slideTo(Number(this.value), 0)
         if (this.autoWidth) {
           setTimeout(() => {
-            this.mySwiper.update()
+            this.uiSwiper.update()
           }, 500)
         }
       })
@@ -181,7 +183,7 @@ export default {
     swiperResize() {
       clearTimeout(this.resizeUpadte)
       this.resizeUpadte = setTimeout(() => {
-        this.mySwiper.update()
+        this.uiSwiper.update()
       }, 300)
     },
     swiperClickSlide(index, reallyIndex) {
@@ -198,7 +200,7 @@ export default {
     },
     swiperChangeStart() {
       if (!this.loop && this.navi) {
-        this.swiperCheck(this.mySwiper)
+        this.swiperCheck(this.uiSwiper)
       }
     },
     swiperCheck(tar) {
@@ -238,18 +240,18 @@ export default {
       // }
     },
     swiperPrevEvt() {
-      this.mySwiper.slidePrev()
+      this.uiSwiper.slidePrev()
     },
     swiperNextEvt() {
-      this.mySwiper.slideNext()
+      this.uiSwiper.slideNext()
     },
     autoPlayButton(e) {
       e.stopPropagation()
       this.isAutoplay = !this.isAutoplay
       if (this.isAutoplay) {
-        this.mySwiper.autoplay.start()
+        this.uiSwiper.autoplay.start()
       } else {
-        this.mySwiper.autoplay.stop()
+        this.uiSwiper.autoplay.stop()
       }
     },
     swiperAppendSlide() {
@@ -259,12 +261,12 @@ export default {
       if (this.value !== null && !this.isChagned) {
         this.isChagned = true
         clearTimeout(this.timer)
-        if (this.value !== this.mySwiper.realIndex) this.$emit('input', this.mySwiper.realIndex)
+        if (this.value !== this.uiSwiper.realIndex) this.$emit('input', this.uiSwiper.realIndex)
         this.timer = setTimeout(() => {
           this.isChagned = false
         }, 10)
       }
-      this.$emit('swiperChange', this.mySwiper.snapIndex)
+      this.$emit('swiperChange', this.uiSwiper.snapIndex)
     },
     swiperEnd() {
       // console.log('end??')

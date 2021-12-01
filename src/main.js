@@ -8,7 +8,7 @@ import store from './store'
 import commonUI from './utils/common'
 import directives from './utils/directives'
 
-import 'swiper/swiper-bundle.css'
+import 'swiper/css/swiper.css'
 import './assets/scss/front.scss'
 
 Vue.prototype.$anime = anime
