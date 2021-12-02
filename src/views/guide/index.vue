@@ -107,6 +107,7 @@
         <ui-tab>탭메뉴11</ui-tab>
         <ui-tab>탭메뉴12</ui-tab>
       </ui-tabs>
+      <h3>탭컨텐츠가 swiper가 아님</h3>
       <ui-tab-panels v-model="tabVal">
         <ui-tab-panel>
           탭 컨텐츠1<br>
@@ -176,6 +177,82 @@
           탭 컨텐츠12 <br>
         </ui-tab-panel>
       </ui-tab-panels>
+      <h3>탭컨텐츠가 swiper 일때</h3>
+      <ui-tab-panels
+        v-model="tabVal"
+        swiper
+      >
+        <ui-tab-panel>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+          탭 컨텐츠1<br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠2 <br>
+          탭 컨텐츠2 <br>
+          탭 컨텐츠2 <br>
+          탭 컨텐츠2 <br>
+          탭 컨텐츠2 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠3 <br>
+          탭 컨텐츠3 <br>
+          탭 컨텐츠3 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠4 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠5 <br>
+          탭 컨텐츠5 <br>
+          탭 컨텐츠5 <br>
+          탭 컨텐츠5 <br>
+          탭 컨텐츠5 <br>
+          탭 컨텐츠5 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠6 <br>
+          탭 컨텐츠6 <br>
+          탭 컨텐츠6 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠7 <br>
+          탭 컨텐츠7 <br>
+          탭 컨텐츠7 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠8 <br>
+          탭 컨텐츠8 <br>
+          탭 컨텐츠8 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠9 <br>
+          탭 컨텐츠9 <br>
+          탭 컨텐츠9 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠10 <br>
+          탭 컨텐츠10 <br>
+          탭 컨텐츠10 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠11 <br>
+          탭 컨텐츠11 <br>
+          탭 컨텐츠11 <br>
+        </ui-tab-panel>
+        <ui-tab-panel>
+          탭 컨텐츠12 <br>
+          탭 컨텐츠12 <br>
+          탭 컨텐츠12 <br>
+        </ui-tab-panel>
+      </ui-tab-panels>
+      <div v-if="tabVal === 5">
+        tabVal가 5일때만 보임
+      </div>
       <br>
       tabVal:
       <input

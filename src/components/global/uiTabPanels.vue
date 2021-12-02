@@ -1,11 +1,12 @@
 <template>
   <div
-    class="ui-swiper-wrap tab-swiper-wrap"
+    :class="wrapClass"
   >
     <div
+      v-if="swiper"
       v-swiper:uiTabPanels="swiperOption"
       class="ui-swiper"
-      :class="{loop:loop, 'auto-height':autoHeight}"
+      :class="{'auto-height':autoHeight}"
       @ready="swiperReady"
       @slideChangeTransitionEnd="swiperChangeEvt"
     >
@@ -17,6 +18,7 @@
         class="swiper-pagination"
       />
     </div>
+    <slot v-else />
   </div>
 </template>
 <script>
@@ -26,18 +28,38 @@ export default {
   name: 'UiTabPanels',
   props: {
     value: { type: [String, Number], default: null },
+    swiper: { type: Boolean, default: false },
     autoHeight: { type: Boolean, default: true },
-    loop: { type: Boolean, default: false },
   },
   data() {
     return {
+      isChagned: false,
       swiperOption: {},
     }
+  },
+  computed: {
+    wrapClass() {
+      return {
+        'ui-swiper-wrap': this.swiper,
+        'tab-swiper-wrap': this.swiper,
+        'tab-panels': !this.swiper,
+      }
+    },
   },
   watch: {
     value() {
       if (this.value !== null && this.value !== '' && !Number.isNaN(this.value)) {
-        if (!this.isChagned) this.uiTabPanels.slideTo(Number(this.value), 500)
+        if (this.swiper) {
+          if (!this.isChagned) this.uiTabPanels.slideTo(Number(this.value), 500)
+        } else {
+          this.$children.forEach((tab, i) => {
+            if (i === this.value) {
+              tab.$el.classList.add('active')
+            } else {
+              tab.$el.classList.remove('active')
+            }
+          })
+        }
         this.$emit('input', this.value)
         this.isChagned = false
       }
@@ -50,6 +72,10 @@ export default {
     bus.$on('uiTabPanelsUpdate', this.swiperUpdate)
 
     // console.log(this.swiperOptionSet)
+    if (!this.swiper) {
+      console.log(this.value, this.$children[this.value].$el)
+      this.$children[this.value].$el.classList.add('active')
+    }
   },
   destroyed() {
     bus.$off('uiTabPanelsUpdate', this.swiperUpdate)
@@ -61,7 +87,6 @@ export default {
       console.log(autoHeightOpt)
       return {
         slidesPerView: 1,
-        loop: !!this.loop,
         autoHeight: autoHeightOpt,
         threshold: 30,
         touchAngle: 30,

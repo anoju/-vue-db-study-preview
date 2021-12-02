@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-slide tab-swiper-slide">
+  <div :class="className">
     <slot />
   </div>
 </template>
@@ -10,11 +10,26 @@ export default {
   },
   data() {
     return {
+      isSwiper: false,
     }
   },
+  computed: {
+    className() {
+      return {
+        'swiper-slide': this.isSwiper,
+        'tab-swiper-slide': this.isSwiper,
+        'tab-panel': !this.isSwiper,
+      }
+    },
+  },
   beforeMount() {
+    if (this.$parent.$options.name === 'UiTabPanels' && this.$parent.swiper) {
+      this.isSwiper = true
+    }
   },
   mounted() {
+    console.log()
+    console.log(this.$parent.swiper)
   },
   destroyed() {
   },
