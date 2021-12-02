@@ -20,23 +20,22 @@
         <slot />
       </div>
       <div
-        ref="pagination"
-        slot="pagination"
-        class="swiper-pagination"
-      />
-    </div>
-    <div
-      ref="paginationWrap"
-      class="swiper-pagination-wrap"
-    >
-      <button
-        v-if="autoplay"
-        type="button"
-        class="swiper-auto-ctl"
-        :class="{play:!isAutoplay}"
-        :aria-label="autoplayText"
-        @click="autoPlayButton"
-      />
+        ref="paginationWrap"
+        class="swiper-pagination-wrap"
+      >
+        <button
+          v-if="autoplay"
+          type="button"
+          class="swiper-auto-ctl"
+          :class="{play:!isAutoplay}"
+          :aria-label="autoplayText"
+          @click="autoPlayButton"
+        />
+        <div
+          ref="pagination"
+          class="swiper-pagination"
+        />
+      </div>
     </div>
     <button
       v-if="navi"
@@ -97,11 +96,7 @@ export default {
       isChagned: false,
       resizeUpadte: '',
       timer: null,
-      swiperOption: {
-        pagination: {
-          el: '.swiper-pagination',
-        },
-      },
+      swiperOption: {},
     }
   },
   computed: {
@@ -121,22 +116,18 @@ export default {
     },
   },
   beforeMount() {
-    if (this.autoplay) {
-      this.isAutoplay = true
-      // this.uiSwiper.slideTo(this.index, 0, false);
-      // this.uiSwiper.autoplay.start();
-    }
+    if (this.autoplay) this.isAutoplay = true
+    this.swiperOption = this.swiperOptionSet()
   },
   mounted() {
     bus.$on('uiSwiperUpdate', this.swiperUpdate)
-    console.log(this.uiSwiper)
+    // console.log(this.uiSwiper)
   },
   destroyed() {
     bus.$off('uiSwiperUpdate', this.swiperUpdate)
   },
   methods: {
-    /*
-    swiperOption() {
+    swiperOptionSet() {
       let autoplayOpt = ''
       let autoHeightOpt = false
       if (this.autoplay) {
@@ -163,7 +154,6 @@ export default {
         },
       }
     },
-    */
     swiperUpdate() {
       setTimeout(() => {
         this.uiSwiper.update()

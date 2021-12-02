@@ -37,13 +37,13 @@
 </template>
 
 <script>
-import uiPage from '@/components/global/uiPage.vue'
+// import uiPage from '@/components/global/uiPage.vue'
 import PostList from '@/components/page/PostList.vue'
 
 export default {
   name: 'List',
   components: {
-    uiPage,
+    // uiPage,
     PostList,
   },
   data() {

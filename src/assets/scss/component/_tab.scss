@@ -55,3 +55,14 @@
     display: block;
   }
 }
+.tab-swiper-wrap{
+  .ui-swiper.swiper-container-initialized{
+    padding: 0;
+    .swiper-slide{
+      padding: 0 20px;
+    }
+  }
+  .swiper-pagination{
+    display: none;
+  }
+}

@@ -17,7 +17,7 @@
 <script>
 let uuid = 0
 export default {
-  name: 'uiTab',
+  name: 'UiTabItem',
   props: {
     value: { type: [String, Number], default: null },
     title: { type: String, required: true },

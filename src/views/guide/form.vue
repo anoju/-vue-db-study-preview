@@ -79,15 +79,15 @@
 </template>
 
 <script>
-import uiPage from '@/components/global/uiPage.vue'
-import uiSelect from '@/components/global/uiSelect.vue'
+// import uiPage from '@/components/global/uiPage.vue'
+// import uiSelect from '@/components/global/uiSelect.vue'
 
 export default {
   name: 'Index',
-  components: {
-    uiPage,
-    uiSelect,
-  },
+  // components: {
+  //   uiPage,
+  //   uiSelect,
+  // },
   data() {
     return {
       checked: false,

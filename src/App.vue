@@ -5,14 +5,14 @@
   </div>
 </template>
 <script>
-import UiLoading from '@/components/global/uiLoading.vue'
+// import UiLoading from '@/components/global/uiLoading.vue'
 import eventBus from '@/components/eventBus.vue'
 
 export default {
   name: 'App',
-  components: {
-    UiLoading,
-  },
+  // components: {
+  //   UiLoading,
+  // },
   data() {
     return {
       isLoading: false,

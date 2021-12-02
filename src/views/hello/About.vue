@@ -39,8 +39,6 @@ import addComma from '@/utils'
 
 export default {
   name: 'HelloAbout',
-  components: {
-  },
   data() {
     return {
       isBoxOn: false,

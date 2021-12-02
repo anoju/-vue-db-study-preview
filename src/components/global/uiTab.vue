@@ -1,3 +1,4 @@
+<script>
 let uuid = 0
 export default {
   name: 'UiTab',
@@ -16,10 +17,6 @@ export default {
       active: false,
       text: null,
     }
-  },
-  render() {
-    // return this.$slots.default
-    return false
   },
   computed: {
     listeners() {
@@ -44,4 +41,9 @@ export default {
   },
   methods: {
   },
+  render() {
+    // return this.$slots.default
+    return false
+  },
 }
+</script>
