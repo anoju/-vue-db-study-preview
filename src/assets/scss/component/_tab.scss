@@ -1,6 +1,10 @@
 .tabmenu{
   position: relative;
-  margin-left:-20px;margin-right:-20px;
+  @include outer;
+  &.first{
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
   &:before{
     content:'';
     position:absolute;
@@ -12,38 +16,81 @@
     z-index: 1;
   }
 	.tab-inner{
-    position:relative;overflow:hidden;height:41px;transition:top 0.3s;background-color:#fff;overflow-x:auto;overflow-y:hidden;
+    position:relative;
+    height:41px;
+    transition:top 0.3s;
+    background-color:#fff;
+    @include scroll-x;
+    @include scroll-hide;
   }
 	&.disabled{
 		.tablist{opacity:0.3;}
 		.tab.disabled{opacity:1;}
 	}
 	.tablist{
-		display:flex;white-space:nowrap;text-align:center;
+		display:flex;
+    white-space:nowrap;
+    text-align:center;
 		&>.tab{
-			width:100%;position:relative;text-align:center;
-			&.disabled{opacity:0.3;}
-			&>a{position:relative;display:flex;align-items:center;justify-content:center;padding:0 10px;height:41px;text-align:center;font-size:16px;color:#666;}
+			width:100%;
+      position:relative;
+      text-align:center;
+			&.disabled{
+        opacity:0.3;
+      }
+			&>a{
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:0 10px;
+        height:41px;
+        text-align:center;
+        font-size:16px;
+        color:#666;
+      }
 			&.active>a,
 			&>a.router-link-exact-active{
-				font-weight:bold;color:#333;
+				font-weight:bold;
+        color:#333;
 			}
 		}
 	}
 	&.scrollable{
 		.tablist{
-      &>.tab:first-child{padding-left: 10px;}
-      &>.tab:last-child{padding-right: 10px;}
+      &>.tab:first-child{
+        padding-left: 10px;
+      }
+      &>.tab:last-child{
+        padding-right: 10px;
+      }
 		}
 	}
 }
 .tab-blur{
-  position:absolute;top:-1px;width:32px;height:100%;pointer-events:none;
-  &.left{left:0;background-image:linear-gradient(to left,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);}
-  &.right{right:0;background-image:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);}
+  position:absolute;
+  top:-1px;
+  width:32px;
+  height:100%;
+  pointer-events:none;
+  &.left{
+    left:0;
+    background-image:linear-gradient(to left,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);
+  }
+  &.right{
+    right:0;
+    background-image:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);
+  }
 }
 .tab-line{
-	position:absolute;left:0;bottom:0;pointer-events:none;height:2px;background:#222;border-radius:2px;z-index: 2;
+	position:absolute;
+  left:0;
+  bottom:0;
+  pointer-events:none;
+  height:2px;
+  background:#222;
+  border-radius:2px;
+  z-index: 2;
 }
 .line-moving .tab-line{
   transition:left 0.3s,width 0.3s;

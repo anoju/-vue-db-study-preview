@@ -1,7 +1,13 @@
 <template>
   <ui-page title="리스트">
-    <h1>SNS인척 리스트</h1>
-    <!-- <div class="post-wrap">
+    <guide-navi />
+    <h2 class="gd__h1 first">
+      SNS인척 리스트
+    </h2>
+    <h3 class="gd__h2">
+      페이지에 v-for문을 이용해서 출력
+    </h3>
+    <div class="post-wrap">
       <div
         v-for="(item, i) in listData"
         :key="i"
@@ -28,7 +34,11 @@
           </p>
         </div>
       </div>
-    </div> -->
+    </div>
+
+    <h3 class="gd__h2">
+      컴포넌트를 이용해서 출력
+    </h3>
     <post-list
       :items="listData"
       @postClick="getPostLike"
@@ -37,13 +47,13 @@
 </template>
 
 <script>
-// import uiPage from '@/components/global/uiPage.vue'
+import guideNavi from '@/components/page/guideNavi.vue'
 import PostList from '@/components/page/PostList.vue'
 
 export default {
   name: 'List',
   components: {
-    // uiPage,
+    guideNavi,
     PostList,
   },
   data() {

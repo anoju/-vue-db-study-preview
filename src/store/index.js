@@ -11,9 +11,7 @@ export default new Vuex.Store({
       const rtnVal = {
         menus: [
           { link: '/hello', text: 'helloWorld' },
-          { link: '/guide/index', text: 'index' },
-          { link: '/guide/form', text: 'form' },
-          { link: '/guide/list', text: 'list' },
+          { link: '/guide/index', text: 'guide' },
         ],
       }
       return rtnVal

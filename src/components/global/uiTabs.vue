@@ -289,7 +289,13 @@ export default {
       }
     },
     indexChk(val) {
-      if (typeof val === 'number' || (parseInt(val, 10) >= 0 && `${parseInt(val, 10)}`.length === val.length)) {
+      if (val === null) {
+        this.childrens.forEach((child, i) => {
+          if (child.to === this.$route.path) {
+            this.index = i
+          }
+        })
+      } else if (typeof val === 'number' || (parseInt(val, 10) >= 0 && `${parseInt(val, 10)}`.length === val.length)) {
         this.index = typeof val === 'number' ? val : parseInt(val, 10)
       } else if (typeof val === 'string') {
         this.childrens.forEach((tab, i) => {
