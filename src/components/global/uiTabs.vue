@@ -71,6 +71,7 @@
 </template>
 
 <script>
+let uuid = 0
 export default {
   name: 'UiTabs',
   props: {
@@ -127,10 +128,11 @@ export default {
     },
   },
   beforeCreate() {
-  },
-  created() {
+    this.uuid = uuid.toString()
+    uuid += 1
   },
   beforeMount() {
+    // console.log(this.uuid)
   },
   mounted() {
     this.readySet()
