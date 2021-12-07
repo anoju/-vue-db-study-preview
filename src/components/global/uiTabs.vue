@@ -1,10 +1,12 @@
 <template>
   <div
-    :class="[tabmenuClass, {'line-moving': islineMoving, fixed:isFixed}]"
+    :class="[tabmenuClass, {'line-moving': islineMoving, 'top__fixed':isFixed}]"
+    :style="wrapStyle"
   >
     <div
       ref="wrap"
       class="tab-inner"
+      :class="{'tab-fixed':fixed}"
       :style="fixedStyle"
     >
       <div
@@ -15,7 +17,6 @@
       />
       <div
         class="tablist"
-        :class="{tab__fixed:fixed}"
         role="tablist"
       >
         <div
@@ -93,6 +94,7 @@ export default {
       isScrollableLeft: false,
       isScrollableRight: false,
       isFixedTopChk: false,
+      wrapStyle: null,
       fixedStyle: null,
       noWatch: false,
     }
@@ -197,9 +199,7 @@ export default {
         }
       })
       if (this.isFixed) {
-        let margin = 56
-        if (this.type2)margin = 97
-        const sclY = this.$getOffset(this.$el).top - margin
+        const sclY = this.$getOffset(this.$el).top
         let wrap = this.$el.closest('.scl__body')
         if (wrap === null)wrap = window.document.scrollingElement || window.document.body || window.document.documentElement
         this.$scrollTo(wrap, { top: sclY }, 300)
@@ -248,45 +248,56 @@ export default {
       }
     },
     tabFixed() {
-      let wrap = this.$el.closest('.scl__body')
+      const $pageClass = '.page'
+      const $lockClass = '.lock'
+      const $headerClass = '.header'
+      const $sclBodyClass = '.scl__body'
+      const $popHeadClass = '.pop_head'
+      const $popBodyClass = '.pop_body'
+
+      let wrap = this.$el.closest($sclBodyClass)
       if (wrap === null) wrap = window
-      if ((this.$el.closest('.page_wrap') !== null && !this.$el.closest('.page_wrap').classList.contains('lock')) || wrap.classList.contains('pop_body')) {
+      if ((this.$el.closest($pageClass) !== null && !this.$el.closest($pageClass).classList.contains($lockClass.substring(1))) || wrap.classList.contains($popBodyClass.substring(1))) {
         const elWrap = (wrap === window) ? document : wrap
-        const fixedEls = elWrap.querySelectorAll('.fixed')
+        const fixedEls = elWrap.querySelectorAll('.top__fixed')
         let fixedTop = 0
         if (fixedEls.length) {
-          fixedEls.forEach((i) => {
-            fixedTop += i.firstChild.offsetHeight
+          fixedEls.forEach((el) => {
+            if (this.$el === el) return
+            fixedTop += el.firstChild.offsetHeight
           })
         }
         if (elWrap !== document) {
           const $prevEl = elWrap.previousElementSibling
           if ($prevEl !== null) {
             const $prevClassList = $prevEl.classList
-            if ($prevClassList.contains('pop_head')) {
+            if ($prevClassList.contains($popHeadClass.substring(1))) {
               fixedTop += $prevEl.firstChild.offsetHeight
             }
           }
+        } else {
+          const $header = document.querySelector($headerClass)
+          if ($header !== null) {
+            fixedTop += $header.firstChild.offsetHeight
+          }
         }
-        let margin = fixedTop
-        const height = this.$el.firstChild.offsetHeight
-        const sclTop = (wrap === window) ? wrap.scrollY : wrap.scrollTop
-        if (sclTop < this.lastScrollPosition) margin -= height
-        if (this.$getOffset(this.$el).top <= (sclTop + margin)) {
+        const $fixedMargin = fixedTop
+        const $child$height = this.$el.firstChild.offsetHeight
+        const $sclTop = (wrap === window) ? wrap.pageYOffset : wrap.scrollTop
+        if (this.$getOffset(this.$el).top < ($sclTop + $fixedMargin)) {
           this.isFixed = true
-          if (height > 0 && !this.isFixedTopChk) {
+          if ($child$height > 0 && !this.isFixedTopChk) {
             this.fixedStyle = { top: `${fixedTop}px` }
+            this.wrapStyle = { height: `${$child$height}px` }
             this.isFixedTopChk = true
           }
         } else {
           this.isFixed = false
           if (this.isFixedTopChk) {
             this.fixedStyle = null
+            this.wrapStyle = null
             this.isFixedTopChk = false
           }
-          setTimeout(() => {
-            this.lastScrollPosition = sclTop
-          }, 1)
         }
       }
     },

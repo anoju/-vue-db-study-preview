@@ -8,6 +8,7 @@ export default {
     Vue.prototype.$removeComma = this.removeComma
     Vue.prototype.$loading = this.loading
     Vue.prototype.$scrollTo = this.scrollTo
+    Vue.prototype.$getOffset = this.getOffset
   },
   removeComma(val) {
     if (val === null || val === undefined) return ''
@@ -49,5 +50,34 @@ export default {
         }
       }),
     })
+  },
+  getOffset(element) {
+    let $el = element
+    let $elX = 0
+    let $elY = 0
+    let isSticky = false
+    while ($el && !Number.isNaN($el.offsetLeft) && !Number.isNaN($el.offsetTop)) {
+      let $style = window.getComputedStyle($el)
+      // const $matrix = new WebKitCSSMatrix($style.transform);
+      if ($style.position === 'sticky') {
+        isSticky = true
+        $el.style.position = 'static'
+      }
+      $elX += $el.offsetLeft
+      // $elX += $matrix.m41; //translateX
+      $elY += $el.offsetTop
+      // $elY += $matrix.m42;  //translateY
+      if (isSticky) {
+        isSticky = false
+        $el.style.position = ''
+      }
+      $el = $el.offsetParent
+      if ($el !== null) {
+        $style = window.getComputedStyle($el)
+        $elX += parseInt($style.borderLeftWidth, 10)
+        $elY += parseInt($style.borderTopWidth, 10)
+      }
+    }
+    return { left: $elX, top: $elY }
   },
 }

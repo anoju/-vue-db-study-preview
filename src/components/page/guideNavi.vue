@@ -1,5 +1,8 @@
 <template>
-  <ui-tabs class="first">
+  <ui-tabs
+    class="first"
+    fixed
+  >
     <ui-tab to="/guide/index">
       index
     </ui-tab>
