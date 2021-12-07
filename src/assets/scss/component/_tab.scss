@@ -48,11 +48,16 @@
 .line-moving .tab-line{
   transition:left 0.3s,width 0.3s;
 }
-
-.tab-panel{
-  display: none;
-  &.active{
-    display: block;
+.tab-panels{
+  &.is-height-transition{
+    transition: height 0.3s ease;
+    overflow: hidden;
+  }
+  .tab-panel{
+    display: none;
+    &.active{
+      display: block;
+    }
   }
 }
 .tab-swiper-wrap{

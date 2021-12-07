@@ -1,6 +1,8 @@
 <template>
   <div
+    ref="wrap"
     :class="wrapClass"
+    :style="{'height': wrapHeight}"
   >
     <div
       v-if="swiper"
@@ -34,6 +36,9 @@ export default {
   data() {
     return {
       isChagned: false,
+      isHeightTransition: false,
+      beforeHeight: null,
+      wrapHeight: null,
       swiperOption: {},
     }
   },
@@ -43,6 +48,7 @@ export default {
         'ui-swiper-wrap': this.swiper,
         'tab-swiper-wrap': this.swiper,
         'tab-panels': !this.swiper,
+        'is-height-transition': !this.swiper && this.isHeightTransition,
       }
     },
   },
@@ -52,13 +58,23 @@ export default {
         if (this.swiper) {
           if (!this.isChagned) this.uiTabPanels.slideTo(Number(this.value), 500)
         } else {
+          let $activeHeight = null
           this.$children.forEach((tab, i) => {
             if (i === this.value) {
               tab.$el.classList.add('active')
+              $activeHeight = tab.$el.offsetHeight
             } else {
               tab.$el.classList.remove('active')
             }
           })
+          if ($activeHeight !== null && (this.beforeHeight !== $activeHeight)) {
+            this.isHeightTransition = true
+            this.wrapHeight = `${this.beforeHeight}px`
+            setTimeout(() => {
+              this.wrapHeight = `${$activeHeight}px`
+              this.beforeHeight = $activeHeight
+            }, 5)
+          }
         }
         this.$emit('input', this.value)
         this.isChagned = false
@@ -73,18 +89,27 @@ export default {
 
     // console.log(this.swiperOptionSet)
     if (!this.swiper) {
-      console.log(this.value, this.$children[this.value].$el)
-      this.$children[this.value].$el.classList.add('active')
+      // console.log(this.value, this.$children[this.value].$el)
+      const $activeEl = this.$children[this.value].$el
+      $activeEl.classList.add('active')
+      this.beforeHeight = $activeEl.offsetHeight
+      this.$el.addEventListener('transitionend', this.wrapTransitionEnd)
     }
   },
-  destroyed() {
+  beforeDestroy() {
     bus.$off('uiTabPanelsUpdate', this.swiperUpdate)
+    if (!this.swiper) {
+      this.$el.removeEventListener('transitionend', this.wrapTransitionEnd)
+    }
   },
+  // destroyed() {
+  //   bus.$off('uiTabPanelsUpdate', this.swiperUpdate)
+  // },
   methods: {
     swiperOptionSet() {
       let autoHeightOpt = true
       if (!this.autoHeight) autoHeightOpt = false
-      console.log(autoHeightOpt)
+      // console.log(autoHeightOpt)
       return {
         slidesPerView: 1,
         autoHeight: autoHeightOpt,
@@ -125,6 +150,10 @@ export default {
           this.isChagned = false
         }, 10)
       }
+    },
+    wrapTransitionEnd() {
+      this.isHeightTransition = false
+      this.wrapHeight = null
     },
   },
 }

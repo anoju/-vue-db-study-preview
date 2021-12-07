@@ -28,8 +28,7 @@ export default {
     }
   },
   mounted() {
-    console.log()
-    console.log(this.$parent.swiper)
+    // console.log(this.$parent.swiper)
   },
   destroyed() {
   },
