@@ -133,3 +133,75 @@
     display: none;
   }
 }
+
+//kb
+.kbtabmenu{
+	position:relative;overflow:hidden;height:41px;transition:top 0.3s;
+  margin-left:-20px;margin-right:-20px;
+  background-color:#fff;
+	&.disabled{
+		.tablist{opacity:0.3;}
+		.tab.disabled{opacity:1;}
+	}
+	&:before{content:'';display:block;position:absolute;left:0;bottom:0;width:100%;height:1px;background:#ddd;}
+	&>.tablist{
+		display:flex;white-space:nowrap;overflow-x:auto;overflow-y:hidden;text-align:center;
+		&>.tab{
+			width:100%;position:relative;text-align:center;
+			&.disabled{opacity:0.3;}
+			&>a{position:relative;display:flex;align-items:center;justify-content:center;padding:0 12px;height:41px;text-align:center;font-size:16px;color:#666;}
+			&.active>a,
+			&>a.router-link-exact-active{
+				font-weight:bold;color:#333;
+			}
+		}
+	}
+	&.scrollable{
+		&>.tablist{
+			padding:0 4px;
+		}
+		.tab_line i{padding:0 12px;}
+	}
+	&+.tab_content,
+	&+.section{margin-top:24px;
+		.bottom_fixed{height:72px;}
+	}
+}
+.kbtab_line{
+	position:absolute;left:0;bottom:0;pointer-events:none;
+	i{
+		position:absolute;left:0;bottom:0;width:0;transition:left 0.2s,width 0.2s;
+		&:before{content:'';display:block;height:1px;background:#222;border-radius:2px;}
+	}
+}
+
+.kbtab_wrap{position:relative;margin-bottom:32px;
+	&.first{
+    margin-top: -20px;
+  }
+	&:last-child{margin-bottom:0;}
+	&.fixed{
+		&:before{content:'';display:block;height:41px;}
+		&.tab2:before{content:'';display:block;height:37px;}
+		&>.kbtabmenu{position:fixed;left:0;width:100%;top:56px;background-color:#fff;z-index:100;margin:0;}
+		&>.kbtabmenu2{position:fixed;left:0;width:100%;top:97px;background-color:#fff;z-index:100;margin:0;}
+	}
+	.scrollable{
+		.tab_blur{
+			position:absolute;top:-1px;width:32px;height:100%;pointer-events:none;
+			&.left{left:0;background-image:linear-gradient(to left,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);}
+			&.right{right:0;background-image:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,0.9) 66%);}
+		}
+	}
+	&.hide_tab{
+		&.fixed:before{display:none;}
+		.kbtabmenu,
+		.kbtabmenu2,
+		.kbtabmenu3{display:none;}
+	}
+}
+// .page_wrap.fixed_hide .tab_wrap.fixed>.tabmenu{top:0;}
+.kbtab_panel{
+	display:none;
+	&.active{display:block;}
+}

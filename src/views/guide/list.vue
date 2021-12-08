@@ -1,5 +1,5 @@
 <template>
-  <ui-page title="리스트">
+  <ui-page title="list">
     <guide-navi />
     <h2 class="gd__h1 first">
       SNS인척 리스트

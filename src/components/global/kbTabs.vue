@@ -1,6 +1,6 @@
 <template>
   <div
-    class="tab_wrap"
+    class="kbtab_wrap"
     :class="{fixed:isFixed, tab2: type2}"
   >
     <div
@@ -14,7 +14,7 @@
         role="tablist"
       >
         <div
-          class="tab_line"
+          class="kbtab_line"
           aria-hidden="true"
           :style="{width:`${lineWrapWidth}px`,left:`${lineWrapLeft}px`}"
         >
@@ -32,10 +32,6 @@
             v-if="tab.to !== null && !tab.disabled"
             :id="tab.btnId"
             :to="tab.to"
-            role="tab"
-            :aria-controls="tab.href"
-            :aria-selected="tab.isActive? 'true': 'false'"
-            :aria-disabled="tab.disabled || disabled"
           >
             {{ tab.title }}
           </router-link>
@@ -66,15 +62,24 @@
         <slot name="tabNext" />
       </div>
     </div>
+    <slot name="between" />
+    <div
+      v-show="isContents"
+      ref="tabContent"
+      class="tab_content"
+      :class="[contentClass]"
+    >
+      <slot />
+    </div>
   </div>
 </template>
 
 <script>
-import eventBus from '../eventBus.vue'
+import uiEventBus from '../eventBus.vue'
 
 let uuid = 0
 export default {
-  name: 'UiTabItems',
+  name: 'KbTabs',
   props: {
     value: { type: [String, Number], default: null },
     fixed: { type: Boolean, default: false },
@@ -110,9 +115,9 @@ export default {
     tabmenuClass() {
       return [
         {
-          tabmenu: !this.type2 && !this.type3,
-          tabmenu2: this.type2,
-          tabmenu3: this.type3,
+          kbtabmenu: !this.type2 && !this.type3,
+          kbtabmenu2: this.type2,
+          kbtabmenu3: this.type3,
           scrollable: this.isScrollable,
           disabled: this.disabled,
           flex_ty: !!this.$slots.tabNext,
@@ -184,7 +189,7 @@ export default {
   methods: {
     readySet() {
       this.$children.forEach((el) => {
-        if (el.$vnode.componentOptions.tag === 'ui-tab') this.childrens.push(el)
+        if (el.$vnode.componentOptions.tag === 'kb-tab') this.childrens.push(el)
       })
 
       if (this.tabs !== null) {
@@ -215,7 +220,7 @@ export default {
           if (tab.value !== null) emitVal = tab.value
           this.currIdx = i
           this.$emit('input', emitVal)
-          if (tab.$el.childNodes.length !== 0 && tab.$el.querySelector('.ui-swiper-wrap') !== null) eventBus.$emit('uiSwiperUpdate', 'update')
+          if (tab.$el.childNodes.length !== 0 && tab.$el.querySelector('.ui-swiper-wrap') !== null) uiEventBus.$emit('kbSwiperUpdate', 'update')
         } else {
           tab.isActive = false
         }
@@ -290,9 +295,9 @@ export default {
     tabFixed() {
       let wrap = this.$el.closest('.scl__body')
       if (wrap === null) wrap = window
-      // console.log(this.$el.closest('.page_wrap'))
-      if ((this.$el.closest('.page_wrap') !== null && !this.$el.closest('.page_wrap').classList.contains('lock')) || wrap.classList.contains('pop_body')) {
-      // if (!this.$el.closest('.page_wrap').classList.contains('lock') || wrap.classList.contains('pop_body')) {
+      // console.log(this.$el.closest('.page'))
+      if ((this.$el.closest('.page') !== null && !this.$el.closest('.page').classList.contains('lock')) || wrap.classList.contains('pop_body')) {
+      // if (!this.$el.closest('.page').classList.contains('lock') || wrap.classList.contains('pop_body')) {
         const elWrap = (wrap === window) ? document : wrap
         const fixedEls = elWrap.querySelectorAll('.fixed')
         let fixedTop = 0
@@ -355,7 +360,7 @@ export default {
         })
       }
       if (this.childrens[this.currIdx] !== undefined && this.childrens[this.currIdx].$el.childNodes.length && this.childrens[this.currIdx].$el.querySelector('.ui-swiper-wrap') !== null) {
-        eventBus.$emit('uiSwiperUpdate', 'update')
+        uiEventBus.$emit('kbSwiperUpdate', 'update')
       }
       if (isLine) {
         setTimeout(() => {

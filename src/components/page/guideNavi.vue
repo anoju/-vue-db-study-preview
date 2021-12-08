@@ -22,6 +22,35 @@
       tab
     </ui-tab>
   </ui-tabs>
+  <!-- <kb-tabs
+    class="first"
+    fixed
+  >
+    <kb-tab
+      to="/guide/index"
+      title="index"
+    />
+    <kb-tab
+      to="/guide/form"
+      title="form"
+    />
+    <kb-tab
+      to="/guide/list"
+      title="list"
+    />
+    <kb-tab
+      to="/guide/loading"
+      title="loading"
+    />
+    <kb-tab
+      to="/guide/swiper"
+      title="swiper"
+    />
+    <kb-tab
+      to="/guide/tab"
+      title="tab"
+    />
+  </kb-tabs> -->
 </template>
 
 <script>

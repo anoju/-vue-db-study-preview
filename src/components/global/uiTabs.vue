@@ -84,6 +84,8 @@ export default {
   data() {
     return {
       childrens: [],
+      childTxt: [],
+      isNewTab: true,
       index: null,
       isFixed: false,
       islineMoving: false,
@@ -141,6 +143,7 @@ export default {
     this.noWatch = true
     window.addEventListener('resize', this.linePosition)
     this.$nextTick(() => {
+      // console.log(this.$el.innerText.replace(/\n/g, ''))
       if (this.childrens.length) {
         this.isScrollableChk()
         if (this.fixed) {
@@ -157,6 +160,23 @@ export default {
     this.$refs.wrap.addEventListener('scroll', this.isScrollableChk)
   },
   beforeDestroy() {
+    if (this.isNewTab) {
+      const stateObj = {}
+      stateObj.child = this.childTxt
+      stateObj.lineLeft = this.lineLeft
+      stateObj.lineWidth = this.lineWidth
+      stateObj.end = true
+      this.$store.state.tabState.push(stateObj)
+    } else {
+      this.$store.state.tabState.forEach((el) => {
+        if (JSON.stringify(el.child) === JSON.stringify(this.childTxt)) {
+          el.lineLeft = this.lineLeft
+          el.lineWidth = this.lineWidth
+          el.end = true
+        }
+      })
+    }
+
     this.$refs.wrap.removeEventListener('scroll', this.isScrollableChk)
     window.removeEventListener('resize', this.linePosition)
     if (this.islineMoving) this.$refs.line.removeEventListener('transitionend', this.linePositionEnd)
@@ -164,8 +184,22 @@ export default {
   methods: {
     readySet() {
       this.$children.forEach((el) => {
-        if (el.$vnode.componentOptions.tag === 'ui-tab') this.childrens.push(el)
+        if (el.$vnode.componentOptions.tag === 'ui-tab') {
+          this.childTxt.push(el.text.trim())
+          this.childrens.push(el)
+        }
       })
+      if (this.$store.state.tabState.length) {
+        this.$store.state.tabState.forEach((el) => {
+          if (JSON.stringify(el.child) === JSON.stringify(this.childTxt)) {
+            this.isNewTab = false
+            this.lineLeft = el.lineLeft
+            this.lineWidth = el.lineWidth
+            el.end = false
+          }
+        })
+      }
+      console.log('readySet', this.$store.state.tabState)
 
       if (this.tabs !== null) {
         this.tabs.forEach((tab) => {

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import anime from 'animejs/lib/anime.es'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import VueRouter from 'vue-router'
+// import VueRouter from 'vue-router'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -18,7 +18,7 @@ Vue.use(components)
 Vue.use(commonUI)
 Vue.use(directives)
 Vue.use(VueAwesomeSwiper, { SwiperSlide: 'swiper-slide' })
-Vue.use(VueRouter)
+// Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 

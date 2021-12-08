@@ -8,32 +8,32 @@ export default [
     children: [
       {
         path: 'index',
-        name: 'guideIndex',
+        // name: 'guideIndex',
         component: () => import('@/views/guide/index.vue'),
       },
       {
         path: 'form',
-        name: 'guideForm',
+        // name: 'guideForm',
         component: () => import('@/views/guide/form.vue'),
       },
       {
         path: 'list',
-        name: 'guideList',
+        // name: 'guideList',
         component: () => import('@/views/guide/list.vue'),
       },
       {
         path: 'loading',
-        name: 'guideLoading',
+        // name: 'guideLoading',
         component: () => import('@/views/guide/loading.vue'),
       },
       {
         path: 'swiper',
-        name: 'guideSwiper',
+        // name: 'guideSwiper',
         component: () => import('@/views/guide/swiper.vue'),
       },
       {
         path: 'tab',
-        name: 'guideTab',
+        // name: 'guideTab',
         component: () => import('@/views/guide/tab.vue'),
       },
     ],

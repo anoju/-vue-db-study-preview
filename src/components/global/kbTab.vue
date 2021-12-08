@@ -17,7 +17,7 @@
 <script>
 let uuid = 0
 export default {
-  name: 'UiTabItem',
+  name: 'KbTab',
   props: {
     value: { type: [String, Number], default: null },
     title: { type: String, required: true },
@@ -70,6 +70,7 @@ export default {
   },
   mounted() {
     this.isActive = this.active
+    if (this.to !== null && this.to === this.$route.path) this.isActive = true
     if (this.$slots.default !== undefined) this.getHeight()
   },
   methods: {

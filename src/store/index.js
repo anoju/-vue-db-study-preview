@@ -5,6 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    tabState: [],
+    // tabState: {
+    //   text: '',
+    //   lineLeft: 0,
+    //   lineWidth: 0,
+    // },
   },
   getters: {
     menuInfo() {
