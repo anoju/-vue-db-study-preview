@@ -1,1 +1,1 @@
-# vue-db-study-preview
+# vue-study-preview
