@@ -15,6 +15,7 @@
       <input
         ref="copyInput"
         type="hidden"
+        readonly
         :value="code"
       >
     </div>
