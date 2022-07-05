@@ -199,7 +199,7 @@ export default {
           }
         })
       }
-      console.log('readySet', this.$store.state.tabState)
+      // console.log('readySet', this.$store.state.tabState)
 
       if (this.tabs !== null) {
         this.tabs.forEach((tab) => {

@@ -245,7 +245,7 @@ export default {
       }
     },
     swiperAppendSlide() {
-      console.log('swiperAppendSlide')
+      // console.log('swiperAppendSlide')
     },
     swiperChangeEvt() {
       if (this.value !== null && !this.isChagned) {
