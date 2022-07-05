@@ -9,6 +9,8 @@ export default {
     Vue.prototype.$loading = this.loading
     Vue.prototype.$scrollTo = this.scrollTo
     Vue.prototype.$getOffset = this.getOffset
+    Vue.prototype.$bodyLock = this.bodyLock
+    Vue.prototype.$bodyUnlock = this.bodyUnlock
   },
   removeComma(val) {
     if (val === null || val === undefined) return ''
@@ -79,5 +81,13 @@ export default {
       }
     }
     return { left: $elX, top: $elY }
+  },
+  bodyLock() {
+    const bodyElm = document.querySelector('body')
+    bodyElm.style.overflow = 'hidden'
+  },
+  bodyUnlock() {
+    const bodyElm = document.querySelector('body')
+    bodyElm.style.overflow = ''
   },
 }

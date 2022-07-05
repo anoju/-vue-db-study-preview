@@ -123,9 +123,11 @@ export default {
   methods: {
     loadingOpen() {
       this.$loading()
+      this.$bodyLock()
     },
     loadingClose() {
       this.$loading(false)
+      this.$bodyUnlock()
     },
   },
 }
