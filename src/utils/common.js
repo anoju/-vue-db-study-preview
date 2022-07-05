@@ -83,11 +83,15 @@ export default {
     return { left: $elX, top: $elY }
   },
   bodyLock() {
-    const bodyElm = document.querySelector('body')
-    bodyElm.style.overflow = 'hidden'
+    // const bodyElm = document.querySelector('body')
+    // bodyElm.style.overflow = 'hidden'
+    const htmlElm = document.querySelector('html')
+    htmlElm.classList.add('scroll-lock')
   },
   bodyUnlock() {
-    const bodyElm = document.querySelector('body')
-    bodyElm.style.overflow = ''
+    // const bodyElm = document.querySelector('body')
+    // bodyElm.style.overflow = ''
+    const htmlElm = document.querySelector('html')
+    htmlElm.classList.remove('scroll-lock')
   },
 }
