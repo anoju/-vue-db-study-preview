@@ -79,6 +79,10 @@
           </div>
         </div>
       </div>
+
+      <div class="box">
+        스크롤 확인용 임시 영역
+      </div>
     </div>
 
     <!-- 마크업 로딩창 -->
@@ -132,3 +136,13 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+.box {
+  height: 2000px;
+  margin-top: 20px;
+  background:#f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
