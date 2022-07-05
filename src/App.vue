@@ -20,7 +20,11 @@ export default {
   },
   watch: {
     $route(to, from) {
+      console.log(to.path, from.path)
       if (to.path !== from.path) {
+        this.$bodyUnlock()
+        console.log('사라져라 scroll-lock')
+
         // 탭 util
         this.$nextTick(() => {
           if (this.$store.state.tabState.length) {
