@@ -8,6 +8,7 @@ import store from './store'
 import components from './components/components'
 import commonUI from './utils/common'
 import directives from './utils/directives'
+import vuetify from '@/plugins/vuetify'
 
 import 'swiper/css/swiper.css'
 import './assets/scss/front.scss'
@@ -25,5 +26,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  vuetify,
   render: (h) => h(App),
 }).$mount('#app')

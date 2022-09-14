@@ -36,6 +36,11 @@ export default [
         // name: 'guideTab',
         component: () => import('@/views/guide/tab.vue'),
       },
+      {
+        path: 'vuetify',
+        // name: 'guideVuetify',
+        component: () => import('@/views/guide/vuetify.vue'),
+      },
     ],
   },
 

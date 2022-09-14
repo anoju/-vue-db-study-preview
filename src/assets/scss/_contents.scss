@@ -345,3 +345,13 @@
     display: none !important;
   }
 }
+
+.v-carousel{
+  &.hide-navi{
+    .v-carousel__controls,
+    .v-window__prev,
+    .v-window__next{
+      display: none;
+    }
+  }
+}
